@@ -1,0 +1,21 @@
+galaxy_info:
+  author: jedimt
+  role_name: mlperf
+  description: Install and configure MLPerf storage I/O benchmark
+
+  license: MIT
+
+  min_ansible_version: "8"
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - jammy
+
+  galaxy_tags:
+    - linux
+    - dlio
+    - benchmark
+    - mlperf
+
+dependencies: []

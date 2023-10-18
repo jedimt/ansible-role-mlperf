@@ -1,0 +1,21 @@
+---
+# vars file for ansible-role-mlperf
+
+# precheck.yml variables
+
+  # Minimum tested version of python
+  precheck_python_min_version: 3.10
+
+  # Minimum tested version of Ansible (7.x)
+  precheck_ansible_min_version: 2.14.1
+
+  # Minimum Ubuntu version
+  precheck_ubuntu_min_version: 22.04
+
+# mlperf.yml variables
+
+  # MLPerf github
+  mlperf_repo_url: 'https://github.com/mlcommons/storage.git'
+
+  # MLPeft version to download
+  mlperf_repo_version: 'v0.5'

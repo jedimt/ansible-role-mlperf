@@ -1,0 +1,10 @@
+---
+# tasks file for ansible-role-mlperf
+
+# Check for required Ansible and Python versions
+- name: Run pre-checks
+  ansible.builtin.import_tasks: precheck.yml
+
+# Download and install MLPerf packages
+- name: Install prerequisites packages
+  ansible.builtin.import_tasks: mlperf.yml

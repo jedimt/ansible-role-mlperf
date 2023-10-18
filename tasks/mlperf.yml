@@ -1,0 +1,53 @@
+---
+
+# Install APT packages we need
+- name: Install required APT packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+    autoremove: true
+  loop: "{{ dlio_apt_packages }}"
+  become: true
+
+# Create directory for DLIO repo
+- name: Create directory for repo
+  ansible.builtin.file:
+    path: "{{ mlperf_repo_dest_folder }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ ansible_user_id }}"
+    recurse: true
+
+# Clone the MLPerf repo
+- name: Clone MLPerf repository
+  ansible.builtin.git:
+    repo: "{{ mlperf_repo_url }}"
+    dest: "{{ mlperf_repo_dest_folder }}"
+    version: "{{ mlperf_repo_version }}"
+    recursive: true
+
+# Upgrade pip
+- name: Upgrade to latest pip build
+  ansible.builtin.pip:
+    name: pip
+    extra_args: --upgrade
+
+# Install virtualenv python module
+- name: Install Python virtualenv
+  ansible.builtin.pip:
+    name: virtualenv
+
+# Install requirements for MLEPerf repository
+- name: Install specified MLPerf Python requirements
+  ansible.builtin.pip:
+    requirements: "{{ mlperf_repo_dest_folder }}/dlio_benchmark/requirements.txt"
+    virtualenv: "{{ mlperf_repo_dest_folder }}/venv"
+    virtualenv_python: '3.10'
+
+# Install upgrades for Python dev tools
+- name: Upgrade python dev tools
+  ansible.builtin.pip:
+    name: python-dev-tools
+    virtualenv: "{{ mlperf_repo_dest_folder }}/venv"
+    virtualenv_python: '3.10'
+    extra_args: --upgrade
