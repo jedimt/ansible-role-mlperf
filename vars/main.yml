@@ -19,3 +19,9 @@
 
   # MLPeft version to download
   mlperf_repo_version: 'v0.5'
+
+  # APT packages to install before mlperf
+  mlperf_apt_packages:
+    - pip
+    - sysstat
+    - libmpich-dev
