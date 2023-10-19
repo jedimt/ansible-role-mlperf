@@ -1,13 +1,13 @@
 ---
 
-# # Install APT packages we need
-# - name: Install required APT packages
-#   ansible.builtin.apt:
-#     name: "{{ item }}"
-#     state: present
-#     autoremove: true
-#   loop: "{{ dlio_apt_packages }}"
-#   become: true
+# Install APT packages we need
+- name: Install required APT packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+    autoremove: true
+  loop: "{{ mlperf_apt_packages }}"
+  become: true
 
 # Create directory for MLPerf repo
 - name: Create directory for repo
