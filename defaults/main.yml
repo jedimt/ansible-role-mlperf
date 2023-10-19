@@ -1,2 +1,13 @@
 ---
 # defaults file for ansible-role-mlperf
+
+# mlperf.yml variables
+
+  # Folder for model data
+  mlperf_data_folder: '/data'
+
+  # Path to receive the cloned mlperf storage repo
+  mlperf_repo_dest_folder: '{{ ansible_env.HOME }}/github/storage'
+
+  # Python version for venv used for mlperf packages and modules
+  venv_python_version: '3.10'

@@ -1,15 +1,15 @@
 ---
 
-# Install APT packages we need
-- name: Install required APT packages
-  ansible.builtin.apt:
-    name: "{{ item }}"
-    state: present
-    autoremove: true
-  loop: "{{ dlio_apt_packages }}"
-  become: true
+# # Install APT packages we need
+# - name: Install required APT packages
+#   ansible.builtin.apt:
+#     name: "{{ item }}"
+#     state: present
+#     autoremove: true
+#   loop: "{{ dlio_apt_packages }}"
+#   become: true
 
-# Create directory for DLIO repo
+# Create directory for MLPerf repo
 - name: Create directory for repo
   ansible.builtin.file:
     path: "{{ mlperf_repo_dest_folder }}"
@@ -42,12 +42,12 @@
   ansible.builtin.pip:
     requirements: "{{ mlperf_repo_dest_folder }}/dlio_benchmark/requirements.txt"
     virtualenv: "{{ mlperf_repo_dest_folder }}/venv"
-    virtualenv_python: '3.10'
+    virtualenv_python: "{{ venv_python_version }}"
 
 # Install upgrades for Python dev tools
 - name: Upgrade python dev tools
   ansible.builtin.pip:
     name: python-dev-tools
     virtualenv: "{{ mlperf_repo_dest_folder }}/venv"
-    virtualenv_python: '3.10'
+    virtualenv_python: "{{ venv_python_version }}"
     extra_args: --upgrade
