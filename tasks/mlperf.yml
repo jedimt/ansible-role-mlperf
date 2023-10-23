@@ -51,3 +51,12 @@
     virtualenv: "{{ mlperf_repo_dest_folder }}/venv"
     virtualenv_python: "{{ venv_python_version }}"
     extra_args: --upgrade
+
+# Copy bash profile script to target
+# This is required for running multiple accelerator thread tests
+- name: Copy bash profile script to target
+  ansible.builtin.copy:
+    src: files/mlperf.sh
+    dest: /etc/profile.d/
+    mode: '0644'
+  tags: task_profile
