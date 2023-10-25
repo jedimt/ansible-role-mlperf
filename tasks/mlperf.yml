@@ -44,14 +44,6 @@
     virtualenv: "{{ mlperf_repo_dest_folder }}/venv"
     virtualenv_python: "{{ venv_python_version }}"
 
-# Install upgrades for Python dev tools
-- name: Upgrade python dev tools
-  ansible.builtin.pip:
-    name: python-dev-tools
-    virtualenv: "{{ mlperf_repo_dest_folder }}/venv"
-    virtualenv_python: "{{ venv_python_version }}"
-    extra_args: --upgrade
-
 # Copy bash profile script to target
 # This is required for running multiple accelerator thread tests
 - name: Copy bash profile script to target
